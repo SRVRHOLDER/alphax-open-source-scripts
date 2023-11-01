@@ -1,0 +1,185 @@
+-- Not too much "advanced" but it should works good
+
+-- Made by Plasek in 11/01/2023 17:29 (UTC-5)
+
+local gui = Instance.new("ScreenGui")
+local frame = Instance.new("Frame")
+local corner1 = Instance.new("UICorner")
+local label = Instance.new("TextLabel")
+local keyhere = Instance.new("TextBox")
+local corner2 = Instance.new("UICorner")
+local button1 = Instance.new("TextButton")
+local corner3 = Instance.new("UICorner")
+local closebutton = Instance.new("TextButton")
+local corner4 = Instance.new("UICorner")
+local button2 = Instance.new("TextButton")
+local corner5 = Instance.new("UICorner")
+local stroke = Instance.new("UIStroke")
+local starterGui = game:GetService("StarterGui")
+local players = game:GetService("Players")
+
+-- Properties:
+
+gui.Name = "KeySystem"
+gui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+frame.Parent = gui
+frame.BackgroundColor3 = Color3.fromRGB(27, 27, 27)
+frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+frame.BorderSizePixel = 0
+frame.Position = UDim2.new(0.270428002, 0, 0.269076318, 0)
+frame.Size = UDim2.new(0, 471, 0, 274)
+frame.Draggable = true
+frame.Selectable = true
+frame.Active = true
+corner1.Parent = frame
+
+label.Name = "l1"
+label.Parent = frame
+label.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+label.BackgroundTransparency = 1
+label.BorderColor3 = Color3.fromRGB(0, 0, 0)
+label.BorderSizePixel = 0
+label.Position = UDim2.new(0.286624193, 0, 0.0393013097, 0)
+label.Size = UDim2.new(0, 200, 0, 50)
+label.Font = Enum.Font.Kalam
+label.Text = "Key System V1"
+label.TextColor3 = Color3.fromRGB(128, 214, 195)
+label.TextSize = 30
+
+keyhere.Name = "keyhere"
+keyhere.Parent = frame
+keyhere.Active = true
+keyhere.BackgroundColor3 = Color3.fromRGB(79, 79, 79)
+keyhere.BorderColor3 = Color3.fromRGB(0, 0, 0)
+keyhere.BorderSizePixel = 0
+keyhere.Position = UDim2.new(0.289, 0, 0.268, 0)
+keyhere.Size = UDim2.new(0, 200, 0, 50)
+keyhere.Font = Enum.Font.Code
+keyhere.PlaceholderColor3 = Color3.fromRGB(178, 178, 178)
+keyhere.PlaceholderText = ""
+keyhere.Text = "Key Here"
+keyhere.TextSize = 14
+keyhere.TextColor3 = Color3.fromRGB(178, 178, 178)
+
+corner2.Parent = keyhere
+
+button1.Name = "submait"
+button1.Parent = frame
+button1.Active = true
+button1.BackgroundColor3 = Color3.fromRGB(79, 79, 79)
+button1.BorderColor3 = Color3.fromRGB(0, 0, 0)
+button1.BorderSizePixel = 0
+button1.Position = UDim2.new(0.28874734, 0, 0.744238615, 0)
+button1.Size = UDim2.new(0, 200, 0, 50)
+button1.Font = Enum.Font.Kalam
+button1.Text = "Submit"
+button1.TextColor3 = Color3.fromRGB(128, 159, 162)
+button1.TextSize = 30
+
+corner3.Parent = button1
+
+closebutton.Name = "close"
+closebutton.Parent = frame
+closebutton.Active = true
+closebutton.BackgroundColor3 = Color3.fromRGB(79, 79, 79)
+closebutton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+closebutton.BorderSizePixel = 0
+closebutton.Position = UDim2.new(0.891719759, 0, 0.0393013097, 0)
+closebutton.Size = UDim2.new(0, 43, 0, 40)
+closebutton.Font = Enum.Font.Highway
+closebutton.Text = "X"
+closebutton.TextScaled = true
+closebutton.TextSize = 14
+closebutton.TextWrapped = true
+
+corner4.Parent = closebutton
+
+button2.Name = "getkey"
+button2.Parent = frame
+button2.Active = true
+button2.BackgroundColor3 = Color3.fromRGB(79, 79, 79)
+button2.BorderColor3 = Color3.fromRGB(0, 0, 0)
+button2.BorderSizePixel = 0
+button2.Position = UDim2.new(0.286624193, 0, 0.510662019, 0)
+button2.Size = UDim2.new(0, 200, 0, 50)
+button2.Font = Enum.Font.Kalam
+button2.Text = "Get Key"
+button2.TextColor3 = Color3.fromRGB(128, 159, 162)
+button2.TextSize = 30
+
+corner5.Parent = button2
+
+stroke.Parent = frame
+stroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+stroke.Color = Color3.fromRGB(255, 255, 255)
+stroke.Thickness = 1
+
+-- Scripts:
+
+--[[
+
+-- Notification to start, add if you want:
+
+        starterGui:SetCore("SendNotification", {
+            Title = "Hub Name or Script Idk",
+            Text = "Loaded!",
+            Icon = "rbxassetid://",
+            Duration = 1.2
+        })
+
+]]
+
+local ts = game:GetService("TweenService")
+
+function closeframe()
+    local info = TweenInfo.new(0.5)
+    local goto = {Position = UDim2.new(frame.Position.X.Scale, frame.Position.X.Offset, 1.2, 0)}
+
+    local tween1 = ts:Create(frame, info, goto)
+    tween1:Play()
+    
+    tween1.Completed:Connect(function()
+    gui:Destroy()
+    end)
+end
+
+function checkkey()
+    local inputkey = keyhere.Text
+    local webcontent = getweb("https://pastebin.com/raw/Jv5LZiNh") -- your key website, must be raw website.
+    
+    -- the key is "keylol"
+
+    if inputkey == webcontent then
+        starterGui:SetCore("SendNotification", {
+            Title = "Key System",
+            Text = "Valid Key!",
+            Icon = "rbxassetid://", -- you can put a image here from marketplace
+            Duration = 1.2
+        })
+        -- you can put a loader here to your hub or your script
+    else
+        starterGui:SetCore("SendNotification", {
+            Title = "Key System",
+            Text = "Invalid Key!",
+            Icon = "rbxassetid://", -- you can put a image here from marketplace
+            Duration = 1.2
+        })
+    end
+end
+
+button1.MouseButton1Click:Connect(checkkey)
+closebutton.MouseButton1Click:Connect(closeframe)
+
+function getweb(url)
+    local gotit, msg = pcall(function()
+        return game:HttpGet(url, true)
+    end)
+
+    if gotit then
+        return msg
+    else
+        warn("Bruh a error: " .. tostring(msg))
+        return nil
+    end
+end
